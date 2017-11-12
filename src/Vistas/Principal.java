@@ -32,8 +32,8 @@ public class Principal extends javax.swing.JFrame {
         txtPrecioAdulto.setText("43200");
         txtPrecioJoven.setText("30045");
         txtPrecioPolluelo.setText("15840");
-
-    }
+        txtPrecioHuevo.setText("6500");
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,11 +70,17 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        registroVentasHuevos = new javax.swing.JTextArea();
+        lblNombreCliente = new javax.swing.JLabel();
+        lblCantHuevos = new javax.swing.JLabel();
+        txtNombreCliente = new javax.swing.JTextField();
+        txtKilogramos = new javax.swing.JTextField();
+        lblTotal = new javax.swing.JLabel();
+        txtTOTAL = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        chkModificaPrecioH = new javax.swing.JCheckBox();
+        lblPRecioHuevo = new javax.swing.JLabel();
+        txtPrecioHuevo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
@@ -259,7 +265,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(ContenedorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(ContenedorOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         Contenedor1Layout.setVerticalGroup(
             Contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,19 +283,81 @@ public class Principal extends javax.swing.JFrame {
 
         tb_VentaHuevos.addTab("Compra Alimentos", Contenedor1);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Registrar Venta");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        registroVentasHuevos.setColumns(20);
+        registroVentasHuevos.setRows(5);
+        jScrollPane1.setViewportView(registroVentasHuevos);
 
-        jLabel8.setText("jLabel8");
+        lblNombreCliente.setText("Nombre Cliente: ");
 
-        jLabel9.setText("jLabel9");
+        lblCantHuevos.setText("Kilogramos:");
 
-        jTextField1.setText("jTextField1");
+        txtKilogramos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtKilogramosActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setText("jTextField2");
+        lblTotal.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        lblTotal.setText("TOTAL");
+
+        txtTOTAL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTOTALActionPerformed(evt);
+            }
+        });
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        chkModificaPrecioH.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        chkModificaPrecioH.setText("Modifica Precio");
+        chkModificaPrecioH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chkModificaPrecioHMouseClicked(evt);
+            }
+        });
+
+        lblPRecioHuevo.setText("Precio KG");
+
+        txtPrecioHuevo.setEditable(false);
+        txtPrecioHuevo.setFont(new java.awt.Font("DejaVu Sans", 3, 12)); // NOI18N
+        txtPrecioHuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioHuevoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(lblPRecioHuevo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtPrecioHuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addComponent(chkModificaPrecioH)
+                    .addContainerGap(91, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPRecioHuevo)
+                    .addComponent(txtPrecioHuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(17, 17, 17)
+                    .addComponent(chkModificaPrecioH)
+                    .addContainerGap(121, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -297,39 +365,48 @@ public class Principal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 763, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblCantHuevos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblNombreCliente, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(lblTotal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtTOTAL, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(txtNombreCliente)
+                    .addComponent(txtKilogramos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNombreCliente)
+                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCantHuevos)
+                            .addComponent(txtKilogramos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTotal)
+                            .addComponent(txtTOTAL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tb_VentaHuevos.addTab("Venta de Huevos", jPanel1);
@@ -341,7 +418,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(236, 236, 236)
                 .addComponent(jLabel1)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(270, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -461,6 +538,36 @@ public class Principal extends javax.swing.JFrame {
              }
     }//GEN-LAST:event_checkModificaPrecioMouseClicked
 
+    private void txtKilogramosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKilogramosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKilogramosActionPerformed
+
+    private void txtTOTALActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTOTALActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTOTALActionPerformed
+
+    private void txtPrecioHuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioHuevoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioHuevoActionPerformed
+
+    private void chkModificaPrecioHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkModificaPrecioHMouseClicked
+        // TODO add your handling code here:
+        if(chkModificaPrecioH.isSelected())
+        {
+            txtPrecioHuevo.setEditable(true);
+            txtPrecioHuevo.setText("");
+            
+            
+        } else{
+          
+            txtPrecioHuevo.setEditable(false);
+            txtPrecioHuevo.setText("6500");
+            
+            
+        }
+        
+    }//GEN-LAST:event_chkModificaPrecioHMouseClicked
+
       public String ImprimeMensaje()
       {
         //Metodo que Imprime Mensajes
@@ -569,6 +676,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel ContenedorOutput;
     private javax.swing.JButton btn_calcular;
     private javax.swing.JCheckBox checkModificaPrecio;
+    private javax.swing.JCheckBox chkModificaPrecioH;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -578,19 +686,24 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblCantHuevos;
+    private javax.swing.JLabel lblNombreCliente;
+    private javax.swing.JLabel lblPRecioHuevo;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JTextArea registroVentasHuevos;
     private javax.swing.JTabbedPane tb_VentaHuevos;
+    private javax.swing.JTextField txtKilogramos;
     private javax.swing.JTextArea txtML_resultado;
+    private javax.swing.JTextField txtNombreCliente;
     public javax.swing.JTextField txtPrecioAdulto;
+    public javax.swing.JTextField txtPrecioHuevo;
     public javax.swing.JTextField txtPrecioJoven;
     public javax.swing.JTextField txtPrecioPolluelo;
+    private javax.swing.JTextField txtTOTAL;
     private javax.swing.JTextField txt_cantAdultos;
     private javax.swing.JTextField txt_cantHuevos;
     private javax.swing.JTextField txt_cantJovenes;
