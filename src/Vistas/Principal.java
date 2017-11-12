@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class Principal extends javax.swing.JFrame {
     
-    Codorniz[] codornices = new Codorniz[3];
+    static Codorniz[] codornices = new Codorniz[3];
     public int polluelos, adultos, jovenes, cantH,cantSacosP,cantSacosJ,cantSacosA;
     public double costoP,costoA , costoJ ,totalS, totalC , desc;
     /**
@@ -28,6 +28,10 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal() {
         initComponents();
+        
+        txtPrecioAdulto.setText("43200");
+        txtPrecioJoven.setText("30045");
+        txtPrecioPolluelo.setText("15840");
 
     }
 
@@ -38,10 +42,10 @@ public class Principal extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        tb_VentaHuevos = new javax.swing.JTabbedPane();
         Contenedor1 = new javax.swing.JPanel();
         ContenedorInput = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -53,11 +57,24 @@ public class Principal extends javax.swing.JFrame {
         txt_cantAdultos = new javax.swing.JTextField();
         txt_cantHuevos = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtPrecioPolluelo = new javax.swing.JTextField();
+        txtPrecioJoven = new javax.swing.JTextField();
+        txtPrecioAdulto = new javax.swing.JTextField();
+        checkModificaPrecio = new javax.swing.JCheckBox();
         ContenedorOutput = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtML_resultado = new javax.swing.JTextArea();
         btn_calcular = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
@@ -69,8 +86,8 @@ public class Principal extends javax.swing.JFrame {
 
         ContenedorInput.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel2.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
-        jLabel2.setText("Cantidad de Codornices");
+        jLabel2.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel2.setText("Precio de Alimentos");
 
         jLabel3.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         jLabel3.setText("Polluelos: ");
@@ -92,52 +109,101 @@ public class Principal extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         jLabel6.setText("Huevos: ");
 
+        jLabel10.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel10.setText("Cantidad de Codornices");
+
+        txtPrecioPolluelo.setEditable(false);
+        txtPrecioPolluelo.setFont(new java.awt.Font("DejaVu Sans", 3, 12)); // NOI18N
+        txtPrecioPolluelo.setToolTipText("");
+
+        txtPrecioJoven.setEditable(false);
+        txtPrecioJoven.setFont(new java.awt.Font("DejaVu Sans", 3, 12)); // NOI18N
+
+        txtPrecioAdulto.setEditable(false);
+        txtPrecioAdulto.setFont(new java.awt.Font("DejaVu Sans", 3, 12)); // NOI18N
+        txtPrecioAdulto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioAdultoActionPerformed(evt);
+            }
+        });
+
+        checkModificaPrecio.setText("Modificar Precio");
+        checkModificaPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                checkModificaPrecioMouseClicked(evt);
+            }
+        });
+        checkModificaPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkModificaPrecioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ContenedorInputLayout = new javax.swing.GroupLayout(ContenedorInput);
         ContenedorInput.setLayout(ContenedorInputLayout);
         ContenedorInputLayout.setHorizontalGroup(
             ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorInputLayout.createSequentialGroup()
-                .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(ContenedorInputLayout.createSequentialGroup()
-                        .addContainerGap(53, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addGroup(ContenedorInputLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_cantHuevos)
-                            .addComponent(txt_cantAdultos)
-                            .addComponent(txt_cantJovenes)
-                            .addComponent(txt_cantPolluelos))))
-                .addGap(50, 50, 50))
+                .addContainerGap()
+                .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txt_cantAdultos, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_cantJovenes, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_cantPolluelos, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_cantHuevos, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63)
+                .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtPrecioPolluelo)
+                    .addComponent(txtPrecioJoven)
+                    .addComponent(txtPrecioAdulto, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorInputLayout.createSequentialGroup()
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkModificaPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         ContenedorInputLayout.setVerticalGroup(
             ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContenedorInputLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel2)
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_cantPolluelos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_cantJovenes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txt_cantAdultos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkModificaPrecio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(ContenedorInputLayout.createSequentialGroup()
+                        .addComponent(txtPrecioPolluelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtPrecioJoven, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtPrecioAdulto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ContenedorInputLayout.createSequentialGroup()
+                            .addComponent(txt_cantPolluelos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_cantJovenes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4))
+                            .addGap(18, 18, 18)
+                            .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_cantAdultos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5)))
+                        .addComponent(jLabel3)))
                 .addGap(46, 46, 46)
-                .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txt_cantHuevos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGroup(ContenedorInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_cantHuevos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addContainerGap())
         );
 
         ContenedorOutput.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -155,13 +221,11 @@ public class Principal extends javax.swing.JFrame {
         ContenedorOutput.setLayout(ContenedorOutputLayout);
         ContenedorOutputLayout.setHorizontalGroup(
             ContenedorOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorOutputLayout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(50, 50, 50))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorOutputLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
+            .addGroup(ContenedorOutputLayout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(ContenedorOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         ContenedorOutputLayout.setVerticalGroup(
@@ -171,16 +235,14 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         btn_calcular.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         btn_calcular.setText("CALCULAR");
         btn_calcular.setToolTipText("");
-        btn_calcular.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btn_calcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_calcularActionPerformed(evt);
             }
         });
@@ -191,11 +253,11 @@ public class Principal extends javax.swing.JFrame {
             Contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Contenedor1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(Contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_calcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(Contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Contenedor1Layout.createSequentialGroup()
                         .addComponent(ContenedorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(29, 29, 29)
                         .addComponent(ContenedorOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -204,38 +266,200 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Contenedor1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(Contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ContenedorOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ContenedorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                    .addComponent(ContenedorOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(Contenedor1Layout.createSequentialGroup()
+                        .addComponent(ContenedorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addComponent(btn_calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addContainerGap())
         );
+
+        tb_VentaHuevos.addTab("Compra Alimentos", Contenedor1);
+
+        jButton1.setText("jButton1");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel8.setText("jLabel8");
+
+        jLabel9.setText("jLabel9");
+
+        jTextField1.setText("jTextField1");
+
+        jTextField2.setText("jTextField2");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
+        );
+
+        tb_VentaHuevos.addTab("Venta de Huevos", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Contenedor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(236, 236, 236)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(tb_VentaHuevos)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Contenedor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(513, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(49, Short.MAX_VALUE)
+                    .addComponent(tb_VentaHuevos, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcularActionPerformed
+        /*Este Metodo Calcula todo segun los datos ingresados
+
+        */
+        Descuento descuento;
+        double precioP,precioA,precioJ;
+       // GeneraTipoCodornices(codornices);
+
+        try
+        {
+            int op;
+
+            polluelos   = Integer.parseInt(txt_cantPolluelos.getText());
+            jovenes     = Integer.parseInt(txt_cantJovenes.getText());
+            adultos     = Integer.parseInt(txt_cantAdultos.getText());
+            cantH       = Integer.parseInt(txt_cantHuevos.getText());
+            
+            precioP= Double.parseDouble(txtPrecioPolluelo.getText());
+            precioJ = Double.parseDouble(txtPrecioJoven.getText());
+            precioA = Double.parseDouble(txtPrecioAdulto.getText());
+
+            descuento = new Descuento();
+            descuento.setCantH(cantH);
+            descuento.setDescuento(0);
+            desc = descuento.getDescuento();
+
+            cantSacosP = CantidadSacos(polluelos);
+            cantSacosJ = CantidadSacos(jovenes);
+            cantSacosA = CantidadSacos(adultos);
+            
+
+            costoP = CalculaCosto(cantSacosP,precioP);
+            costoJ = CalculaCosto(cantSacosJ,precioJ);
+            costoA = CalculaCosto(cantSacosA,precioA);
+
+            totalS = costoP + costoJ + costoA;
+            totalC = totalS -(totalS * desc);
+
+            txtML_resultado.setText(ImprimeMensaje());
+
+            op =  JOptionPane.showConfirmDialog(null, "Desea Realizar Otro Calculo","AVISO",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_CANCEL_OPTION);
+
+            if(op==0)
+            {
+                txt_cantAdultos.setText("");
+                txt_cantJovenes.setText("");
+                txt_cantPolluelos.setText("");
+                txt_cantHuevos.setText("");
+                txtML_resultado.setText("");
+
+            } else if (op==1)
+            {
+                System.exit(0);
+            }
+
+        } catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e.toString(),"ERROR" , JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_calcularActionPerformed
+
+    private void checkModificaPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkModificaPrecioActionPerformed
+        // TODO add your handling code here:
+//        if(checkModificaPrecio.isSelected())
+//        {
+//            txtPrecioAdulto.setEditable(true);
+//            txtPrecioJoven.setEditable(true);
+//            txtPrecioPolluelo.setEditable(true);                    
+//        }
+//        
+        
+    }//GEN-LAST:event_checkModificaPrecioActionPerformed
+
+    private void txtPrecioAdultoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioAdultoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioAdultoActionPerformed
+
+    private void checkModificaPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkModificaPrecioMouseClicked
+           
+             if(checkModificaPrecio.isSelected())
+        {
+            txtPrecioAdulto.setEditable(true);
+            txtPrecioJoven.setEditable(true);
+            txtPrecioPolluelo.setEditable(true); 
+            txtPrecioAdulto.setText("");
+            txtPrecioJoven.setText("");
+            txtPrecioPolluelo.setText("");
+        }  else {
+            txtPrecioAdulto.setEditable(false);
+            txtPrecioJoven.setEditable(false);
+            txtPrecioPolluelo.setEditable(false);
+            txtPrecioAdulto.setText("43200");
+            txtPrecioJoven.setText("30045");
+            txtPrecioPolluelo.setText("15840");
+             }
+    }//GEN-LAST:event_checkModificaPrecioMouseClicked
 
       public String ImprimeMensaje()
       {
@@ -262,68 +486,6 @@ public class Principal extends javax.swing.JFrame {
       }
     
     
-    private void btn_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcularActionPerformed
-        /*Este Metodo Calcula todo segun los datos ingresados
-        
-        */
-        Descuento descuento;
-        GeneraTipoCodornices(codornices);
-        
-   
-       
-        
-        try 
-          {
-            int op;
-            
-                 
-                polluelos   = Integer.parseInt(txt_cantPolluelos.getText());
-                jovenes     = Integer.parseInt(txt_cantJovenes.getText());
-                adultos     = Integer.parseInt(txt_cantAdultos.getText());
-                cantH       = Integer.parseInt(txt_cantHuevos.getText());
-
-                descuento = new Descuento();
-                descuento.setCantH(cantH);
-                descuento.setDescuento(0);
-                desc = descuento.getDescuento();
-
-                cantSacosP = CantidadSacos(polluelos);
-                cantSacosJ = CantidadSacos(jovenes);
-                cantSacosA = CantidadSacos(adultos);
-
-                costoP = CalculaCosto(cantSacosP,1,codornices);
-                costoJ = CalculaCosto(cantSacosJ, 2, codornices);
-                costoA = CalculaCosto(cantSacosA, 3, codornices);
-
-                totalS = costoP + costoJ + costoA;
-                totalC = totalS -(totalS * desc);    
-                
-                txtML_resultado.setText(ImprimeMensaje());
-                 
-                 
-               op =  JOptionPane.showConfirmDialog(null, "Desea Realizar Otro Calculo","AVISO",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_CANCEL_OPTION);
-               
-               if(op==0)
-                 {
-                   txt_cantAdultos.setText("");
-                   txt_cantJovenes.setText("");
-                   txt_cantPolluelos.setText("");
-                   txt_cantHuevos.setText("");
-                   txtML_resultado.setText("");
-                   
-                 } else if (op==1)
-                   {
-                     System.exit(0);
-                   }
- 
-
-          } catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(null,e.toString(),"ERROR" , JOptionPane.ERROR_MESSAGE);
-            }
-
-    }//GEN-LAST:event_btn_calcularActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -357,6 +519,11 @@ public class Principal extends javax.swing.JFrame {
                 new Principal().setVisible(true);
             }
         });
+        GeneraTipoCodornices(codornices);     
+        
+        
+        
+        
  
     }
     
@@ -377,40 +544,15 @@ public class Principal extends javax.swing.JFrame {
            
        }
      
-     public static double CalculaCosto(int cantSacos,int pos, Codorniz[] c)
+     public static double CalculaCosto(int cantSacos,double precio)
        {
          //Metodo que Calcula el Costo de Los Sacos
-         double resultado;
-         double precio;
-         
-            switch(pos)
-              {
-                case 1 :
-                    precio = c[0].getPrecioAlimento();
+          return cantSacos * precio;
                     
-                    return resultado = cantSacos * precio;
-                    
-                    
-                    
-                case 2 :
-                    precio = c[1].getPrecioAlimento();
-                    
-                    return resultado = cantSacos * precio;
-                    
-                    
-                    
-                case 3 :
-                    precio = c[2].getPrecioAlimento();
-                    
-                    return resultado = cantSacos * precio;                    
-                     
-              }
-                 
-         
-         return 0;
+
        }
        
-        public void GeneraTipoCodornices(Codorniz[] c)
+        public static void GeneraTipoCodornices(Codorniz[] c)
         {
             c[0] = new Codorniz(1, "Polluelo", "Crecimiento", 15840);
             c[1] = new Codorniz(2, "Joven", "Desarrollo", 30045);
@@ -418,8 +560,7 @@ public class Principal extends javax.swing.JFrame {
             
         }
         
-        
-    
+            
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -427,15 +568,29 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel ContenedorInput;
     private javax.swing.JPanel ContenedorOutput;
     private javax.swing.JButton btn_calcular;
+    private javax.swing.JCheckBox checkModificaPrecio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTabbedPane tb_VentaHuevos;
     private javax.swing.JTextArea txtML_resultado;
+    public javax.swing.JTextField txtPrecioAdulto;
+    public javax.swing.JTextField txtPrecioJoven;
+    public javax.swing.JTextField txtPrecioPolluelo;
     private javax.swing.JTextField txt_cantAdultos;
     private javax.swing.JTextField txt_cantHuevos;
     private javax.swing.JTextField txt_cantJovenes;
