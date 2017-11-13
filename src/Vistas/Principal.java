@@ -7,6 +7,11 @@ package Vistas;
 
 import Clases.Codorniz;
 import Clases.Descuento;
+import Clases.Huevos;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,13 +23,34 @@ public class Principal extends javax.swing.JFrame {
     static Codorniz[] codornices = new Codorniz[3];
     public int polluelos, adultos, jovenes, cantH,cantSacosP,cantSacosJ,cantSacosA;
     public double costoP,costoA , costoJ ,totalS, totalC , desc;
-    /**
-     * Creates new form Principal
-     * 
-     * 
-     * 
-     */
-    
+     Vector registro = new Vector();
+       
+        Calendar tiempo = Calendar.getInstance();
+        String hora = String.valueOf(tiempo.get(Calendar.HOUR));
+        String minutos = String.valueOf(tiempo.get(Calendar.MINUTE));
+        String segundos = String.valueOf(tiempo.get(Calendar.SECOND));
+        String dia = tiempo.getTime().toString();
+        int amPM = tiempo.get(Calendar.AM_PM);     
+        String reloj = hora + ':' + minutos +':'+segundos +'.'+ Jornada();
+        
+        
+        
+       String Jornada() {
+            String resultado = null;
+            
+            switch (amPM){                
+                case 0:
+                    resultado = "AM";
+                    break;                    
+                case 1:                    
+                    resultado = "PM";
+                    break; 
+                    
+                default:
+                    break;
+            }           
+            return resultado;            
+        }
     
     public Principal() {
         initComponents();
@@ -68,7 +94,7 @@ public class Principal extends javax.swing.JFrame {
         txtML_resultado = new javax.swing.JTextArea();
         btn_calcular = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnRegistraVenta = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         registroVentasHuevos = new javax.swing.JTextArea();
         lblNombreCliente = new javax.swing.JLabel();
@@ -81,6 +107,8 @@ public class Principal extends javax.swing.JFrame {
         chkModificaPrecioH = new javax.swing.JCheckBox();
         lblPRecioHuevo = new javax.swing.JLabel();
         txtPrecioHuevo = new javax.swing.JTextField();
+        btnCalculaVenta = new javax.swing.JButton();
+        btnImprimeRegistro = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
@@ -283,7 +311,12 @@ public class Principal extends javax.swing.JFrame {
 
         tb_VentaHuevos.addTab("Compra Alimentos", Contenedor1);
 
-        jButton1.setText("Registrar Venta");
+        btnRegistraVenta.setText("Registrar Venta");
+        btnRegistraVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistraVentaActionPerformed(evt);
+            }
+        });
 
         registroVentasHuevos.setColumns(20);
         registroVentasHuevos.setRows(5);
@@ -293,6 +326,18 @@ public class Principal extends javax.swing.JFrame {
 
         lblCantHuevos.setText("Kilogramos:");
 
+        txtKilogramos.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtKilogramosCaretUpdate(evt);
+            }
+        });
+        txtKilogramos.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txtKilogramosInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
         txtKilogramos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtKilogramosActionPerformed(evt);
@@ -302,6 +347,9 @@ public class Principal extends javax.swing.JFrame {
         lblTotal.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         lblTotal.setText("TOTAL");
 
+        txtTOTAL.setEditable(false);
+        txtTOTAL.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        txtTOTAL.setEnabled(false);
         txtTOTAL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTOTALActionPerformed(evt);
@@ -341,8 +389,8 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
-                    .addComponent(chkModificaPrecioH)
-                    .addContainerGap(91, Short.MAX_VALUE)))
+                    .addComponent(chkModificaPrecioH, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(76, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,30 +407,49 @@ public class Principal extends javax.swing.JFrame {
                     .addContainerGap(121, Short.MAX_VALUE)))
         );
 
+        btnCalculaVenta.setText("CALCULA VENTA");
+        btnCalculaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculaVentaActionPerformed(evt);
+            }
+        });
+
+        btnImprimeRegistro.setText("Muestra Registro");
+        btnImprimeRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimeRegistroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 763, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblCantHuevos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblNombreCliente, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(lblTotal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTOTAL, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                    .addComponent(txtNombreCliente)
-                    .addComponent(txtKilogramos))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCantHuevos, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNombreCliente)
+                            .addComponent(lblTotal))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTOTAL, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(txtNombreCliente)
+                            .addComponent(txtKilogramos)))
+                    .addComponent(btnCalculaVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnImprimeRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRegistraVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,9 +470,15 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(lblTotal)
                             .addComponent(txtTOTAL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                        .addComponent(btnCalculaVenta)))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnRegistraVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnImprimeRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -540,6 +613,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void txtKilogramosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKilogramosActionPerformed
         // TODO add your handling code here:
+  
+       
     }//GEN-LAST:event_txtKilogramosActionPerformed
 
     private void txtTOTALActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTOTALActionPerformed
@@ -548,6 +623,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void txtPrecioHuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioHuevoActionPerformed
         // TODO add your handling code here:
+        
+     
+        
+        
     }//GEN-LAST:event_txtPrecioHuevoActionPerformed
 
     private void chkModificaPrecioHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkModificaPrecioHMouseClicked
@@ -567,6 +646,101 @@ public class Principal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_chkModificaPrecioHMouseClicked
+
+    private void btnRegistraVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistraVentaActionPerformed
+        // Este metodo gener un vector con los datos de la venta y los va a agregando en el campo de texto
+    try{    
+        
+         double precioH =   Double.parseDouble(txtPrecioHuevo.getText());
+         double kg      =   Double.parseDouble(txtKilogramos.getText());
+         double tot     =   Double.parseDouble (txtTOTAL.getText());
+         
+         double tKilosVendidos;
+         double tVentas;
+         
+         Huevos venta = new Huevos(txtNombreCliente.getText(), precioH, kg, tot, reloj);
+         
+         registro.add(venta);
+         
+         txtNombreCliente.setText("");
+         txtKilogramos.setText("");
+         txtTOTAL.setText("");
+         
+         
+        }   catch(Exception e){
+         JOptionPane.showMessageDialog(null,e.toString(),"ERROR" , JOptionPane.ERROR_MESSAGE);
+        
+        }
+        
+    }//GEN-LAST:event_btnRegistraVentaActionPerformed
+
+    private void txtKilogramosInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtKilogramosInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKilogramosInputMethodTextChanged
+
+    private void txtKilogramosCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtKilogramosCaretUpdate
+      
+    }//GEN-LAST:event_txtKilogramosCaretUpdate
+
+    private void btnCalculaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculaVentaActionPerformed
+        
+      try 
+        {  //realiza el calculo de la venta y muestra el total, hace uso de la clase Calendar para obtener la hora de venta
+         
+         hora = String.valueOf(tiempo.get(Calendar.HOUR));
+         minutos = String.valueOf(tiempo.get(Calendar.MINUTE));
+         segundos = String.valueOf(tiempo.get(Calendar.SECOND));
+         dia = tiempo.getTime().toString();
+         amPM = tiempo.get(Calendar.AM_PM);     
+         reloj = hora + ':' + minutos +':'+segundos +'.'+ Jornada();
+        
+        
+        
+        
+        double precio = Double.parseDouble(txtPrecioHuevo.getText());
+        double kg = Double.parseDouble(txtKilogramos.getText());
+        
+        
+       
+        
+        double resultado = precio * kg;
+        
+        txtTOTAL.setText(String.valueOf(resultado));
+        } catch(Exception e){
+             JOptionPane.showMessageDialog(null,e.toString(),"ERROR" , JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCalculaVentaActionPerformed
+
+    private void btnImprimeRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimeRegistroActionPerformed
+      
+        // este metodo recorre el vector y muestra los resultados en el campo de texto
+        String hilera="";
+        int ventasDiarias=1;
+        double totalidad=0;
+        Huevos h;
+        
+        Enumeration vEnum = registro.elements();
+        
+        while(vEnum.hasMoreElements())
+        {
+            hilera+= vEnum.nextElement().toString()+ "\n";
+            
+            ventasDiarias++;
+        }
+        
+        for(int i= 0; i<registro.size(); i++)
+        {
+            h = (Huevos)registro.get(i);
+            
+            totalidad += h.getTotal();
+            
+        }
+
+         
+         registroVentasHuevos.setText(hilera + "\n\n"+ 
+              "Cantidad del Dia: " + ventasDiarias + "\n\n"+
+              "Total Vendido:  ₡" + totalidad   );
+    }//GEN-LAST:event_btnImprimeRegistroActionPerformed
 
       public String ImprimeMensaje()
       {
@@ -674,10 +848,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel Contenedor1;
     private javax.swing.JPanel ContenedorInput;
     private javax.swing.JPanel ContenedorOutput;
+    private javax.swing.JButton btnCalculaVenta;
+    private javax.swing.JToggleButton btnImprimeRegistro;
+    private javax.swing.JButton btnRegistraVenta;
     private javax.swing.JButton btn_calcular;
     private javax.swing.JCheckBox checkModificaPrecio;
     private javax.swing.JCheckBox chkModificaPrecioH;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

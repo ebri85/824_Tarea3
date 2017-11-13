@@ -15,18 +15,28 @@ public class Huevos {
     private double precioH;
     private double kilogramos;
     private double total;
+    private String hora;
     
     public Huevos()
     {
         
     }
     
-    public Huevos(String nombreCl, double precioH,double kilogramos, double total)
+    public Huevos(String nombreCl, double precioH,double kilogramos, double total, String hora)
     {
         this.nombreCl   = nombreCl;
         this.precioH    = precioH;
         this.kilogramos = kilogramos;
         this.total      = total;
+        this.hora       = hora;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
     public String getNombreCl() {
@@ -64,7 +74,7 @@ public class Huevos {
 
     @Override
     public String toString() {
-        return "Venta{" + "Nombre del Cliente: " + nombreCl + ", Precio del KG de Huevo: " + precioH +", Kilogramos: " +kilogramos + ", TOTAL: " + total + '}';
+        return "Venta{" + "Nombre del Cliente: " + nombreCl + ", Precio del KG de Huevo: ₡" + precioH +", Kilogramos: " +kilogramos + ", TOTAL: ₡" + total + ", HORA: "+ hora +'}';
     }
     
     
