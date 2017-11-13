@@ -27,7 +27,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="236" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="270" max="32767" attributes="0"/>
+              <EmptySpace pref="203" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -61,7 +61,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="DejaVu Sans" size="36" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="CodorSoft 2.0"/>
+        <Property name="text" type="java.lang.String" value="CodorSoft XP 3.0"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JTabbedPane" name="tb_VentaHuevos">

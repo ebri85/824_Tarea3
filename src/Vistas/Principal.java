@@ -114,7 +114,7 @@ public class Principal extends javax.swing.JFrame {
         setTitle("Principal");
 
         jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 36)); // NOI18N
-        jLabel1.setText("CodorSoft 2.0");
+        jLabel1.setText("CodorSoft XP 3.0");
 
         Contenedor1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -491,7 +491,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(236, 236, 236)
                 .addComponent(jLabel1)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
